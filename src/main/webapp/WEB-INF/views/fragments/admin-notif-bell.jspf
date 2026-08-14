@@ -1,0 +1,24 @@
+<%-- Expects navAlertCount (Integer) and navAlertPreview (List<String>) request attributes,
+     set globally by NavbarNotificationAdvice. --%>
+<%
+    Integer navAlertCount = (Integer) request.getAttribute("navAlertCount");
+    java.util.List<String> navAlertPreview = (java.util.List<String>) request.getAttribute("navAlertPreview");
+    int bellCount = navAlertCount != null ? navAlertCount : 0;
+%>
+<details class="notif-bell">
+    <summary>
+        <i class="icon icon-bell"></i>
+        <% if (bellCount > 0) { %><span class="notif-badge"><%= bellCount > 99 ? "99+" : bellCount %></span><% } %>
+    </summary>
+    <div class="notif-dropdown">
+        <div class="notif-dropdown-header">Alerts</div>
+        <% if (navAlertPreview == null || navAlertPreview.isEmpty()) { %>
+            <div class="notif-empty">No active alerts.</div>
+        <% } else { %>
+            <% for (String item : navAlertPreview) { %>
+                <a href="/admin/alerts" class="notif-item"><%= com.hospital.util.Esc.h(item) %></a>
+            <% } %>
+            <a href="/admin/alerts" class="notif-item" style="text-align:center; font-weight:600;">View all (<%= bellCount %>)</a>
+        <% } %>
+    </div>
+</details>

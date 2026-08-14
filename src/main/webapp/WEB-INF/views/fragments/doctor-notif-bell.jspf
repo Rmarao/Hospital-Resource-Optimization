@@ -1,0 +1,24 @@
+<%-- Expects navAppointmentCount (Long/Integer) and navAppointmentPreview (List<String>)
+     request attributes, set globally by NavbarNotificationAdvice. --%>
+<%
+    Object navAppointmentCountObj = request.getAttribute("navAppointmentCount");
+    long bellCount2 = navAppointmentCountObj != null ? ((Number) navAppointmentCountObj).longValue() : 0L;
+    java.util.List<String> navAppointmentPreview = (java.util.List<String>) request.getAttribute("navAppointmentPreview");
+%>
+<details class="notif-bell">
+    <summary>
+        <i class="icon icon-bell"></i>
+        <% if (bellCount2 > 0) { %><span class="notif-badge"><%= bellCount2 > 99 ? "99+" : bellCount2 %></span><% } %>
+    </summary>
+    <div class="notif-dropdown">
+        <div class="notif-dropdown-header">Appointment Requests</div>
+        <% if (navAppointmentPreview == null || navAppointmentPreview.isEmpty()) { %>
+            <div class="notif-empty">No pending requests.</div>
+        <% } else { %>
+            <% for (String item : navAppointmentPreview) { %>
+                <a href="/doctor/appointments" class="notif-item"><%= com.hospital.util.Esc.h(item) %></a>
+            <% } %>
+            <a href="/doctor/appointments" class="notif-item" style="text-align:center; font-weight:600;">View all (<%= bellCount2 %>)</a>
+        <% } %>
+    </div>
+</details>
