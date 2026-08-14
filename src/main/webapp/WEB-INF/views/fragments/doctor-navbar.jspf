@@ -1,0 +1,19 @@
+<%-- Expects a scriptlet-declared String activePage before the include. --%>
+<div class="topnav">
+    <div class="brand"><i class="icon icon-cross"></i> Hospital<span>System</span></div>
+    <div class="nav-links">
+        <a href="/doctor/dashboard" class="nav-link <%= "dashboard".equals(activePage) ? "active" : "" %>"><i class="icon icon-grid"></i> Dashboard</a>
+        <a href="/doctor/patients" class="nav-link <%= "patients".equals(activePage) ? "active" : "" %>"><i class="icon icon-users"></i> My Patients</a>
+        <a href="/doctor/availability" class="nav-link <%= "availability".equals(activePage) ? "active" : "" %>"><i class="icon icon-calendar"></i> Availability</a>
+        <a href="/doctor/appointments" class="nav-link <%= "appointments".equals(activePage) ? "active" : "" %>"><i class="icon icon-clipboard"></i> Requests</a>
+        <a href="/doctor/profile" class="nav-link <%= "profile".equals(activePage) ? "active" : "" %>"><i class="icon icon-user"></i> Profile</a>
+    </div>
+    <div class="topnav-right">
+        <%@ include file="/WEB-INF/views/fragments/doctor-notif-bell.jspf" %>
+        <div class="topnav-user">
+            <div class="u-name">Dr. <%= com.hospital.util.Esc.h(session.getAttribute("userName")) %></div>
+            <div class="u-sub">Doctor Portal</div>
+        </div>
+        <a href="/logout" class="logout-btn"><i class="icon icon-logout"></i> Logout</a>
+    </div>
+</div>

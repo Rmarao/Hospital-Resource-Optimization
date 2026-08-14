@@ -1,0 +1,32 @@
+<%-- Expects a scriptlet-declared String activePage before the include. --%>
+<div class="sidebar">
+    <div class="sidebar-logo">
+        <div class="brand"><i class="icon icon-cross"></i> Hospital<span>System</span></div>
+    </div>
+    <div class="sidebar-user">
+        <div class="avatar"><i class="icon icon-user"></i></div>
+        <div>
+            <div class="sidebar-user-name"><%= com.hospital.util.Esc.h(session.getAttribute("userName") != null ? session.getAttribute("userName") : "Admin") %></div>
+            <div class="sidebar-user-role">Administrator</div>
+        </div>
+    </div>
+    <div class="sidebar-menu">
+        <div class="menu-label">Overview</div>
+        <a href="/admin/dashboard" class="<%= "dashboard".equals(activePage) ? "active" : "" %>"><i class="icon icon-grid"></i> Dashboard</a>
+        <div class="menu-label">Management</div>
+        <a href="/admin/resources" class="<%= "resources".equals(activePage) ? "active" : "" %>"><i class="icon icon-bed"></i> Resources</a>
+        <a href="/admin/doctors" class="<%= "doctors".equals(activePage) ? "active" : "" %>"><i class="icon icon-user"></i> Doctors</a>
+        <a href="/admin/patients" class="<%= "patients".equals(activePage) ? "active" : "" %>"><i class="icon icon-users"></i> Patients</a>
+        <a href="/admin/schedule" class="<%= "schedule".equals(activePage) ? "active" : "" %>"><i class="icon icon-calendar"></i> Schedule</a>
+        <a href="/admin/availability" class="<%= "availability".equals(activePage) ? "active" : "" %>"><i class="icon icon-calendar"></i> Availability</a>
+        <div class="menu-label">Extended</div>
+        <a href="/admin/labs" class="<%= "labs".equals(activePage) ? "active" : "" %>"><i class="icon icon-flask"></i> Labs</a>
+        <a href="/admin/external" class="<%= "external".equals(activePage) ? "active" : "" %>"><i class="icon icon-globe"></i> External Sources</a>
+        <a href="/admin/equipment-prediction" class="<%= "equipment".equals(activePage) ? "active" : "" %>"><i class="icon icon-cpu"></i> Equipment Prediction</a>
+        <a href="/admin/audit-log" class="<%= "audit-log".equals(activePage) ? "active" : "" %>"><i class="icon icon-clipboard"></i> Audit Log</a>
+        <a href="/admin/alerts" class="<%= "alerts".equals(activePage) ? "active" : "" %>"><i class="icon icon-alert-triangle"></i> Alerts</a>
+    </div>
+    <div class="sidebar-bottom">
+        <a href="/logout" class="logout-btn"><i class="icon icon-logout"></i> Logout</a>
+    </div>
+</div>

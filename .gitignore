@@ -1,0 +1,49 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Maven wrapper's downloaded distribution — not the same as .mvn/wrapper/
+# (the small properties file that IS tracked); this is the full extracted
+# Maven install the wrapper pulls down on first run.
+.maven/
+
+# Trained ML model cache — regenerated from src/main/resources/ai4i2020.csv
+# on first startup if missing (see MachinePredictionService), not source.
+equipment_failure_model.ser
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+application-local.properties
+.env
+*.log
+target/
+
+.DS_Store

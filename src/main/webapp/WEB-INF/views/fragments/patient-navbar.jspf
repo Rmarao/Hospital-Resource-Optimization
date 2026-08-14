@@ -1,0 +1,18 @@
+<%-- Expects a scriptlet-declared String activePage before the include. --%>
+<div class="topnav">
+    <div class="brand"><i class="icon icon-cross"></i> Hospital<span>System</span></div>
+    <div class="nav-links">
+        <a href="/patient/dashboard" class="nav-link <%= "dashboard".equals(activePage) ? "active" : "" %>"><i class="icon icon-grid"></i> Dashboard</a>
+        <a href="/patient/fitness" class="nav-link <%= "fitness".equals(activePage) ? "active" : "" %>"><i class="icon icon-heart"></i> Fitness</a>
+        <a href="/patient/appointments" class="nav-link <%= "appointments".equals(activePage) ? "active" : "" %>"><i class="icon icon-calendar"></i> Appointments</a>
+        <a href="/patient/summary" class="nav-link <%= "summary".equals(activePage) ? "active" : "" %>"><i class="icon icon-file-text"></i> Visit Summary</a>
+        <a href="/patient/profile" class="nav-link <%= "profile".equals(activePage) ? "active" : "" %>"><i class="icon icon-user"></i> Profile</a>
+    </div>
+    <div class="topnav-right">
+        <div class="topnav-user">
+            <div class="u-name"><%= com.hospital.util.Esc.h(session.getAttribute("userName")) %></div>
+            <div class="u-sub">Patient Portal</div>
+        </div>
+        <a href="/logout" class="logout-btn"><i class="icon icon-logout"></i> Logout</a>
+    </div>
+</div>
