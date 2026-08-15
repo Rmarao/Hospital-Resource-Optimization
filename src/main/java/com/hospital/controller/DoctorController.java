@@ -43,7 +43,7 @@ public class DoctorController {
 
         // Fetch full patient details in one batched query instead of N findById calls
         List<Long> assignedPatientIds = assignments.stream()
-            .map(DoctorPatient::getPatientId)
+            .map(a -> a.getPatientId())
             .collect(Collectors.toList());
         List<Patient> patients = patientRepository.findAllById(assignedPatientIds);
 
@@ -272,7 +272,7 @@ public class DoctorController {
             .findByDoctorIdOrderByCreatedAtDesc(doctorId);
 
         List<Long> patientIds = requests.stream()
-            .map(AppointmentRequest::getPatientId)
+            .map(r -> r.getPatientId())
             .distinct()
             .collect(Collectors.toList());
         Map<Long, Patient> patientMap = new HashMap<>();

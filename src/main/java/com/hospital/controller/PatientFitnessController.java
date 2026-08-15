@@ -30,7 +30,7 @@ public class PatientFitnessController {
 
         model.addAttribute("isConnected", isConnected);
 
-        if (isConnected) {
+        if (isConnected && patient != null) {
             String accessToken = patient.getGoogleFitAccessToken();
 
             // Try to refresh token if needed

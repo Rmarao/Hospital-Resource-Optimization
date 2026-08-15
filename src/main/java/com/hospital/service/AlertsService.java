@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +45,7 @@ public class AlertsService {
         List<BloodBank> allBlood = bloodBankRepository.findAll();
 
         List<BloodBank> expiredBlood = allBlood.stream()
-            .filter(BloodBank::isExpired)
+            .filter(b -> b.isExpired())
             .collect(Collectors.toList());
 
         List<BloodBank> expiringSoonBlood = allBlood.stream()
@@ -74,7 +73,14 @@ public class AlertsService {
         }
         List<EquipmentLog> highRiskEquipment = latestPerDevice.values().stream()
             .filter(l -> "HIGH".equals(l.getPredictedRisk()))
-            .sorted(Comparator.comparing(EquipmentLog::getLogTime, Comparator.nullsLast(Comparator.reverseOrder())))
+            .sorted((l1, l2) -> {
+                java.time.LocalDateTime t1 = l1.getLogTime();
+                java.time.LocalDateTime t2 = l2.getLogTime();
+                if (t1 == null && t2 == null) return 0;
+                if (t1 == null) return 1;
+                if (t2 == null) return -1;
+                return t2.compareTo(t1);
+            })
             .collect(Collectors.toList());
 
         Summary summary = new Summary();
