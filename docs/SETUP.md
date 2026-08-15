@@ -58,7 +58,8 @@ Visit `http://localhost:8080`.
 queries), service tests (auto-discharge, ML prediction, LLM analysis with a
 mocked HTTP client), and a Spring context load test.
 
-## CI
+## Dependency updates
 
-`.github/workflows/ci.yml` runs `mvnw test` on every push/PR;
-`.github/dependabot.yml` keeps Maven and GitHub Actions dependencies patched.
+`.github/dependabot.yml` opens a PR whenever a Maven or GitHub Actions
+dependency has a newer version available — review and merge (or close)
+these individually.

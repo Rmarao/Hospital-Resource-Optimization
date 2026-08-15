@@ -1,6 +1,5 @@
 # 🏥 Hospital Resource Optimization
 
-[![CI](https://github.com/Rmarao/Hospital-Resource-Optimization/actions/workflows/ci.yml/badge.svg)](https://github.com/Rmarao/Hospital-Resource-Optimization/actions/workflows/ci.yml)
 [![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://openjdk.org/projects/jdk/17/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
