@@ -27,6 +27,9 @@
         <a href="/admin/alerts" class="<%= "alerts".equals(activePage) ? "active" : "" %>"><i class="icon icon-alert-triangle"></i> Alerts</a>
     </div>
     <div class="sidebar-bottom">
-        <a href="/logout" class="logout-btn"><i class="icon icon-logout"></i> Logout</a>
+        <form action="/logout" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            <button type="submit" class="logout-btn"><i class="icon icon-logout"></i> Logout</button>
+        </form>
     </div>
 </div>

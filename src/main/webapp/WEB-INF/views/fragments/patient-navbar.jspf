@@ -13,6 +13,9 @@
             <div class="u-name"><%= com.hospital.util.Esc.h(session.getAttribute("userName")) %></div>
             <div class="u-sub">Patient Portal</div>
         </div>
-        <a href="/logout" class="logout-btn"><i class="icon icon-logout"></i> Logout</a>
+        <form action="/logout" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            <button type="submit" class="logout-btn"><i class="icon icon-logout"></i> Logout</button>
+        </form>
     </div>
 </div>
