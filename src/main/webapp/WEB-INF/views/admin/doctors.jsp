@@ -144,7 +144,7 @@
                     <td><%= Esc.h(doctor.getPhone()) %></td>
                     <td>
                         <form action="/admin/doctors/delete" method="post" class="inline-form"
-                              onsubmit="return confirm('Remove this doctor?')">
+                              data-confirm="Remove this doctor?">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <input type="hidden" name="id" value="<%= doctor.getId() %>" />
                             <button type="submit" class="btn btn-danger btn-sm">Remove</button>

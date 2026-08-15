@@ -128,7 +128,7 @@
                                 <button type="submit" class="btn btn-success btn-sm">Update</button>
                             </form>
                             <form action="/admin/resources/beds/delete" method="post" class="inline-form"
-                                  onsubmit="return confirm('Delete this bed?')">
+                                  data-confirm="Delete this bed?">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="id" value="<%= bed.getId() %>" />
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -206,7 +206,7 @@
                                 <button type="submit" class="btn btn-success btn-sm">Update</button>
                             </form>
                             <form action="/admin/resources/icu/delete" method="post" class="inline-form"
-                                  onsubmit="return confirm('Delete this ICU unit?')">
+                                  data-confirm="Delete this ICU unit?">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="id" value="<%= icu.getId() %>" />
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -271,7 +271,7 @@
                                 <button type="submit" class="btn btn-success btn-sm">Update</button>
                             </form>
                             <form action="/admin/resources/ot/delete" method="post" class="inline-form"
-                                  onsubmit="return confirm('Delete this OT?')">
+                                  data-confirm="Delete this OT?">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="id" value="<%= ot.getId() %>" />
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -360,7 +360,7 @@
                                 <button type="submit" class="btn btn-success btn-sm">Update</button>
                             </form>
                             <form action="/admin/resources/oxygen/delete" method="post" class="inline-form"
-                                  onsubmit="return confirm('Delete this tank?')">
+                                  data-confirm="Delete this tank?">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="id" value="<%= tank.getId() %>" />
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -468,7 +468,7 @@
                                 <button type="submit" class="btn btn-success btn-sm">Update</button>
                             </form>
                             <form action="/admin/resources/blood/delete" method="post" class="inline-form"
-                                  onsubmit="return confirm('Delete this record?')">
+                                  data-confirm="Delete this record?">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="id" value="<%= b.getId() %>" />
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>

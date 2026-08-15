@@ -158,7 +158,7 @@
                         <% if (bedDetails != null) { %>
                             <span class="resource-value"><%= bedDetails.getBedNumber() %> &mdash; <%= bedDetails.getWard() %>, Floor <%= bedDetails.getFloor() %></span>
                             <form action="/doctor/patients/discharge-bed" method="post" class="inline-form"
-                                  onsubmit="return confirm('Discharge this patient from their bed?')">
+                                  data-confirm="Discharge this patient from their bed?">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="admissionId" value="<%= bed.getId() %>" />
                                 <button type="submit" class="btn btn-danger btn-sm">Discharge</button>
@@ -173,7 +173,7 @@
                         <% if (icuDetails != null) { %>
                             <span class="resource-value">ICU #<%= icuDetails.getId() %> <%= icuDetails.getVentilator() ? "&middot; Ventilator" : "" %></span>
                             <form action="/doctor/patients/discharge-icu" method="post" class="inline-form"
-                                  onsubmit="return confirm('Discharge this patient from ICU?')">
+                                  data-confirm="Discharge this patient from ICU?">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="admissionId" value="<%= icu.getId() %>" />
                                 <button type="submit" class="btn btn-danger btn-sm">Discharge</button>

@@ -181,11 +181,10 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="/admin/patients/remove-doctor" method="post">
+                        <form action="/admin/patients/remove-doctor" method="post" data-confirm="Remove doctor assignment?">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <input type="hidden" name="patientId" value="<%= patient.getId() %>" />
-                            <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Remove doctor assignment?')">
+                            <button type="submit" class="btn btn-danger btn-sm">
                                 Remove Doctor
                             </button>
                         </form>

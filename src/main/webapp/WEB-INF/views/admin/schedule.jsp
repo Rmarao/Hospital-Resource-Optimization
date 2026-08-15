@@ -174,7 +174,7 @@
                         <td>
                             <form action="/admin/schedule/release-bed" method="post"
                                   class="inline-form"
-                                  onsubmit="return confirm('Discharge this patient?')">
+                                  data-confirm="Discharge this patient?">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="admissionId" value="<%= ba.getId() %>" />
                                 <button type="submit" class="btn btn-danger btn-sm">Discharge</button>
@@ -257,7 +257,7 @@
                         <td>
                             <form action="/admin/schedule/release-icu" method="post"
                                   class="inline-form"
-                                  onsubmit="return confirm('Discharge from ICU?')">
+                                  data-confirm="Discharge from ICU?">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="admissionId" value="<%= ia.getId() %>" />
                                 <button type="submit" class="btn btn-danger btn-sm">Discharge</button>
