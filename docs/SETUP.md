@@ -43,7 +43,8 @@ Visit `http://localhost:8080`.
 
 - Default admin login (seeded by Flyway): `admin@hospital.com` / `admin123`
 - Default doctor login: `doctor@hospital.com` / `doctor123`
-- Patients register themselves at `/signup`
+- Default patient login: `patient@hospital.com` / `patient123`
+- Or register a new patient at `/signup`
 
 **Change or remove these default credentials before any real deployment.**
 

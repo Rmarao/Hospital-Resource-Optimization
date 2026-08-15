@@ -87,8 +87,9 @@ export APP_ENCRYPTION_KEY=$(openssl rand -base64 32)
 ```
 
 Visit `http://localhost:8080` — seeded logins: `admin@hospital.com` /
-`admin123` (admin), `doctor@hospital.com` / `doctor123` (doctor), or
-register a patient at `/signup`.
+`admin123` (admin), `doctor@hospital.com` / `doctor123` (doctor),
+`patient@hospital.com` / `patient123` (patient). Or register a new patient
+at `/signup`.
 
 Full setup (all env vars, testing, CI) → **[docs/SETUP.md](docs/SETUP.md)**
 
