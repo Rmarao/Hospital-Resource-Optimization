@@ -140,7 +140,7 @@
 		<dependency>
 		    <groupId>org.tribuo</groupId>
 		    <artifactId>tribuo-classification-core</artifactId>
-		    <version>4.3.1</version>
+		    <version>4.3.2</version>
 		</dependency>
 		
 		<!-- Tribuo Decision Tree -->
