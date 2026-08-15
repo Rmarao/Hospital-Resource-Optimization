@@ -20,7 +20,6 @@ public class DashboardController {
     @Autowired private BedRepository bedRepository;
     @Autowired private IcuRepository icuRepository;
     @Autowired private OtRepository otRepository;
-    @Autowired private OxygenTankRepository oxygenTankRepository;
     @Autowired private BloodBankRepository bloodBankRepository;
     @Autowired private BedAdmissionRepository bedAdmissionRepository;
     @Autowired private IcuAdmissionRepository icuAdmissionRepository;

@@ -1,6 +1,7 @@
 package com.hospital.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -49,8 +50,8 @@ public class GoogleFitService {
         HttpEntity<String> entity = new HttpEntity<>(body, headers);
 
         try {
-            ResponseEntity<Map> response =
-                restTemplate.postForEntity(url, entity, Map.class);
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                url, HttpMethod.POST, entity, new ParameterizedTypeReference<Map<String, Object>>() {});
             Map<String, Object> responseBody = response.getBody();
             if (responseBody != null) {
                 Map<String, String> tokens = new HashMap<>();
@@ -81,8 +82,8 @@ public class GoogleFitService {
         HttpEntity<String> entity = new HttpEntity<>(body, headers);
 
         try {
-            ResponseEntity<Map> response =
-                restTemplate.postForEntity(url, entity, Map.class);
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                url, HttpMethod.POST, entity, new ParameterizedTypeReference<Map<String, Object>>() {});
             if (response.getBody() != null) {
                 return (String) response.getBody().get("access_token");
             }
@@ -113,8 +114,8 @@ public class GoogleFitService {
         HttpEntity<String> entity = new HttpEntity<>(body, headers);
 
         try {
-            ResponseEntity<Map> response =
-                restTemplate.postForEntity(url, entity, Map.class);
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                url, HttpMethod.POST, entity, new ParameterizedTypeReference<Map<String, Object>>() {});
             return extractIntValue(response.getBody(), "intVal");
         } catch (Exception e) {
             System.err.println("Steps error: " + e.getMessage());
@@ -143,8 +144,8 @@ public class GoogleFitService {
         HttpEntity<String> entity = new HttpEntity<>(body, headers);
 
         try {
-            ResponseEntity<Map> response =
-                restTemplate.postForEntity(url, entity, Map.class);
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                url, HttpMethod.POST, entity, new ParameterizedTypeReference<Map<String, Object>>() {});
             return extractIntValue(response.getBody(), "fpVal");
         } catch (Exception e) {
             System.err.println("Calories error: " + e.getMessage());
@@ -176,8 +177,8 @@ public class GoogleFitService {
         HttpEntity<String> entity = new HttpEntity<>(body, headers);
 
         try {
-            ResponseEntity<Map> response =
-                restTemplate.postForEntity(url, entity, Map.class);
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                url, HttpMethod.POST, entity, new ParameterizedTypeReference<Map<String, Object>>() {});
             return extractIntValue(response.getBody(), "fpVal");
         } catch (Exception e) {
             System.err.println("Heart rate error: " + e.getMessage());
@@ -185,7 +186,12 @@ public class GoogleFitService {
         }
     }
 
-    // Helper to extract numeric value from Google Fit response
+    // Helper to extract numeric value from Google Fit response. The nested
+    // casts below are inherent to parsing arbitrary JSON into Map<String,Object>
+    // — the shape is trusted from Google's API response, not verifiable at
+    // compile time, so this is the standard place to suppress rather than
+    // fix per-cast.
+    @SuppressWarnings("unchecked")
     private int extractIntValue(Map<String, Object> body, String valueKey) {
         if (body == null) return 0;
         try {
