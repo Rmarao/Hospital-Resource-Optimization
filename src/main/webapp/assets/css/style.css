@@ -782,3 +782,83 @@ textarea { resize: vertical; min-height: 80px; }
   .main, .page-main { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
   body { background: #fff !important; }
 }
+
+/* ============================================================
+   Motion, micro-interactions, and polish (app.js hooks into
+   these classes — see assets/js/app.js). Respects users who've
+   asked for reduced motion.
+   ============================================================ */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes toastIn { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes toastOut { from { opacity: 1; transform: translateX(0); max-height: 80px; margin-bottom: 10px; } to { opacity: 0; transform: translateX(24px); max-height: 0; margin-bottom: 0; } }
+@keyframes modalIn { from { opacity: 0; transform: scale(.96) translateY(4px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.card, .stat-card, .patient-card {
+  animation: fadeInUp .35s ease both;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover, .patient-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+.btn { transition: background .15s, color .15s, transform .1s, box-shadow .15s; }
+.btn:active { transform: scale(.96); }
+.btn:not(:disabled):hover { box-shadow: var(--shadow-sm); }
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .stat-card, .patient-card, .toast, .modal, .modal-overlay { animation: none !important; }
+  .card, .stat-card, .patient-card, .btn { transition: none !important; }
+}
+
+/* ---------- Toast notifications ---------- */
+.toast-root {
+  position: fixed; top: 20px; right: 20px; z-index: 200;
+  display: flex; flex-direction: column; gap: 10px;
+  width: min(360px, calc(100vw - 40px));
+}
+.toast {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 36px 13px 16px; border-radius: var(--radius);
+  font-size: 14px; box-shadow: var(--shadow-lg);
+  animation: toastIn .25s ease both;
+}
+.toast.leaving { animation: toastOut .25s ease both; }
+.toast .icon { width: 17px; height: 17px; flex-shrink: 0; }
+.toast.success { background: var(--success-soft); color: var(--success-strong); }
+.toast.error { background: var(--danger-soft); color: var(--danger-strong); }
+.toast.warning { background: var(--warning-soft); color: var(--warning-strong); }
+.toast.info { background: var(--info-soft); color: var(--info-strong); }
+.toast-close {
+  position: absolute; top: 8px; right: 8px; width: 20px; height: 20px;
+  border: none; background: transparent; cursor: pointer;
+  border-radius: 50%; color: inherit; opacity: .6; font-size: 15px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.toast-close:hover { opacity: 1; background: rgba(0,0,0,.08); }
+.toast-progress { position: absolute; left: 0; bottom: 0; height: 3px; background: currentColor; opacity: .35; }
+
+/* ---------- Modal confirm dialog (replaces window.confirm()) ---------- */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(15, 23, 42, .45);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 300; animation: overlayIn .15s ease both;
+}
+.modal {
+  background: var(--surface); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg); width: min(380px, calc(100vw - 40px));
+  padding: var(--space-6); animation: modalIn .18s ease both;
+}
+.modal h3 { font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.modal h3 .icon { width: 18px; height: 18px; color: var(--warning); }
+.modal p { font-size: 14px; color: var(--text-soft); margin-bottom: 20px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+
+/* ---------- Loading spinner (submit buttons mid-request) ---------- */
+.btn-spinner {
+  display: inline-block; width: 14px; height: 14px;
+  border: 2px solid currentColor; border-right-color: transparent;
+  border-radius: 50%; animation: spin .6s linear infinite; margin-right: 4px;
+  vertical-align: -2px;
+}
