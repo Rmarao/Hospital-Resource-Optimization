@@ -94,7 +94,7 @@ public class DashboardController {
         riskDistribution.put("CRITICAL", 0);
         for (Patient p : allPatients) {
             recommendationRepository.findTopByPatientIdOrderByCreatedAtDesc(p.getId())
-                .ifPresent(rec -> riskDistribution.merge(rec.getSeverityLevel(), 1, Integer::sum));
+                .ifPresent(rec -> riskDistribution.merge(rec.getSeverityLevel(), 1, (a, b) -> a + b));
         }
         model.addAttribute("riskDistribution", riskDistribution);
 

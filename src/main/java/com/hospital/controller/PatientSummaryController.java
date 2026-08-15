@@ -61,9 +61,9 @@ public class PatientSummaryController {
 
         // Bed/ICU number lookups
         Map<Integer, Bed> bedMap = bedRepository.findAll().stream()
-            .collect(Collectors.toMap(Bed::getId, b -> b));
+            .collect(Collectors.toMap(b -> b.getId(), b -> b));
         Map<Integer, Icu> icuMap = icuRepository.findAll().stream()
-            .collect(Collectors.toMap(Icu::getId, i -> i));
+            .collect(Collectors.toMap(i -> i.getId(), i -> i));
         model.addAttribute("bedMap", bedMap);
         model.addAttribute("icuMap", icuMap);
 
